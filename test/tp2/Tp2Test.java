@@ -503,12 +503,12 @@ public class Tp2Test extends SkipRule {
         graph6.addVertex("B");
         graph6.addEdge("A", "B");
 
-        assertTrue(tp2.exercise_j(graph1, graph2));
-        assertTrue(tp2.exercise_j(graph1, graph3));
-        assertTrue(tp2.exercise_j(graph1, graph4));
+        assertTrue(tp2.exercise_j(graph2, graph1));
+        assertTrue(tp2.exercise_j(graph3, graph1));
+        assertTrue(tp2.exercise_j(graph4, graph1));
 
-        assertFalse(tp2.exercise_j(graph1, graph5));
-        assertFalse(tp2.exercise_j(graph1, graph6));
+        assertFalse(tp2.exercise_j(graph5, graph1));
+        assertFalse(tp2.exercise_j(graph6, graph1));
     }
 
     //    k) Verificar si un grafo es completo.
