@@ -1,5 +1,6 @@
 package tp1;
 
+import graph.AdjacencyMatrixGraphImpl;
 import graph.Graph;
 
 import java.util.List;
@@ -8,6 +9,8 @@ import java.util.List;
 public class Tp1Impl<T> implements Tp1<T> {
     @Override
     public void exercise_a(Graph<T> graph) {
+        AdjacencyMatrixGraphImpl<T> graph1 = (AdjacencyMatrixGraphImpl<T>) graph;
+        graph1.matrixPrinter();
         throw new UnsupportedOperationException("TODO");
     }
 
@@ -43,7 +46,7 @@ public class Tp1Impl<T> implements Tp1<T> {
 
     @Override
     public int[][] exercise_h(Graph<T> graph) {
-        throw new UnsupportedOperationException("TODO");
+        throw new UnsupportedOperationException("El grafo es NULL");
     }
 
     @Override

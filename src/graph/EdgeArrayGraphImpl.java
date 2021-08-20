@@ -1,56 +1,91 @@
 package graph;
 
+import java.util.ArrayList;
 import java.util.List;
 
 // TODO: implement
 public class EdgeArrayGraphImpl<T> implements Graph<T> {
+    private ArrayList<T> v = new ArrayList<>();
+    private  int n;
+    private  int alpha ;
+    private  ArrayList<T[]> a = new ArrayList<>();
+
     @Override
     public void addVertex(T x) {
-        throw new UnsupportedOperationException("TODO");
+        v.add(x);
     }
 
     @Override
     public boolean hasVertex(T v){
-        throw new UnsupportedOperationException("TODO");
+        for (int i = 0; i <this.v.size() ; i++) {
+            if(this.v.get(i)== v)
+                return true;
+        }
+        return false;
     }
 
     @Override
     public void removeVertex(T x) {
-        throw new UnsupportedOperationException("TODO");
+        for (int i = 0; i <v.size() ; i++) {
+            if(this.v.get(i)== v)
+                v.remove(i);
+        }
+
     }
 
     @Override
     public void addEdge(T v, T w) {
-        throw new UnsupportedOperationException("TODO");
+        T[] edge = (T[]) new Object[2];
+        edge[0] = v;
+        edge[1]= w;
+        a.add(edge);
     }
 
     @Override
     public void removeEdge(T v, T w) {
-        throw new UnsupportedOperationException("TODO");
+        for (int i = 0; i <a.size() ; i++) {
+            if((a.get(i)[0] == v && a.get(i)[1]==w)||(a.get(i)[0] == w && a.get(i)[1]==v))
+                a.remove(i);
+        }
     }
 
     @Override
     public boolean hasEdge(T v, T w) {
-        throw new UnsupportedOperationException("TODO");
+        for (int i = 0; i <a.size() ; i++) {
+            if ((a.get(i)[0] == v && a.get(i)[1]==w)||(a.get(i)[0] == w && a.get(i)[1]==v))
+                return true;
+
+        }
+        return false;
     }
 
     @Override
     public int order() {
-        throw new UnsupportedOperationException("TODO");
+        n=v.size();
+        return n;
     }
 
     @Override
     public int alpha() {
-        throw new UnsupportedOperationException("TODO");
+        alpha = a.size();
+        return alpha;
     }
 
     @Override
     public List<T> getVertexes() {
-        throw new UnsupportedOperationException("TODO");
+        return v;
     }
 
     @Override
     public List<T> getAdjacencyList(T v) {
-        throw new UnsupportedOperationException("TODO");
+        ArrayList<T> a1 = new ArrayList<>();
+        for (int i = 0; i < a.size(); i++) {
+            if (a.get(i)[0] == v)
+                a1.add(a.get(i)[1]);
+            else if (a.get(i)[1] == v)
+                a1.add(a.get(i)[0]);
+        }
+
+        return a1;
     }
 }
