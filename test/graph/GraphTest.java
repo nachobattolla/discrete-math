@@ -170,11 +170,11 @@ public class GraphTest extends SkipRule {
         graph.addEdge(2002, 2004);
         graph.addEdge(2003, 2002);
 
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 100; i++) {
             graph.addVertex(i);
         }
 
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 100; i++) {
             assertTrue(graph.hasVertex(i));
         }
 

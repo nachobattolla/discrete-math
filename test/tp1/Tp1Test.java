@@ -6,7 +6,7 @@ import graph.factory.GraphFactory;
 import graph.factory.GraphFactoryImpl;
 import org.hamcrest.CoreMatchers;
 import org.junit.Before;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import utils.SkipRule;

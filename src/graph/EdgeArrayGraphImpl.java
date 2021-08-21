@@ -18,7 +18,9 @@ public class EdgeArrayGraphImpl<T> implements Graph<T> {
     @Override
     public boolean hasVertex(T v){
         for (int i = 0; i <this.v.size() ; i++) {
-            if(this.v.get(i)== v)
+            T h = v;
+             T k =this.v.get(i);
+            if(this.v.get(i).equals( v))
                 return true;
         }
         return false;
@@ -27,7 +29,7 @@ public class EdgeArrayGraphImpl<T> implements Graph<T> {
     @Override
     public void removeVertex(T x) {
         for (int i = 0; i <v.size() ; i++) {
-            if(this.v.get(i)== v)
+            if(this.v.get(i)== x)
                 v.remove(i);
         }
 
@@ -52,7 +54,7 @@ public class EdgeArrayGraphImpl<T> implements Graph<T> {
     @Override
     public boolean hasEdge(T v, T w) {
         for (int i = 0; i <a.size() ; i++) {
-            if ((a.get(i)[0] == v && a.get(i)[1]==w)||(a.get(i)[0] == w && a.get(i)[1]==v))
+            if ((a.get(i)[0] .equals(v) && a.get(i)[1].equals(w)||(a.get(i)[0].equals( w) && a.get(i)[1].equals(v))))
                 return true;
 
         }

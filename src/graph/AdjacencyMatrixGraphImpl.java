@@ -49,18 +49,19 @@ public class AdjacencyMatrixGraphImpl<T> implements Graph<T> {
         return true;
     }
 
-    public T[] enlargeArray(T[] array){
+    public void enlargeArray(T[] array){
         T[] arrayEnlarge =  (T[]) new Object[array.length+ 10];
         for (int i = 0; i < array.length; i++) {
             arrayEnlarge[i] = array[i];
         }
-        return arrayEnlarge;
+         V= arrayEnlarge;
     }
 
     @Override
     public boolean hasVertex(T v) {
+
         for (int i = 0; i < V.length; i++) {
-            if (V[i] == v){
+            if (V[i]==v) {
                 return true;
             }
         }
@@ -80,34 +81,38 @@ public class AdjacencyMatrixGraphImpl<T> implements Graph<T> {
     @Override
     public void addEdge(T v, T w) {
         if (hasVertex(v) && hasVertex(w)) {
-            if (!A[(int) v][(int) w]) {
-                A[(int) v][(int) w] = A[(int) w][(int) v] = true;
+            if (!A[vertexIndex(v)][vertexIndex( w)]) {
+                A[vertexIndex(v)][vertexIndex( w)] = A[vertexIndex(w)][vertexIndex(v)] = true;
                 alfa++;
             }
         }
     }
 
-    public boolean[][] enlargeEdgeArray(boolean[][] array){
+    public void enlargeEdgeArray(boolean[][] array){
         boolean[][] arrayEnlarge =  new boolean[array.length+ 10][array.length+ 10];
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[i].length ; j++) {
                 arrayEnlarge[i][j] = array[i][j];
             }
         }
-        return arrayEnlarge;
+        A = arrayEnlarge;
     }
 
     @Override
     public void removeEdge(T v, T w) {
-        if (A[(int) v][(int) w]){
-            A[(int) v][(int) w]=A[(int) w][(int) v] = false;
-            alfa--;
+        if(hasVertex(v) && hasVertex(w)) {
+            if (A[vertexIndex(v)][vertexIndex(w)]) {
+                A[vertexIndex(v)][vertexIndex(w)] = A[vertexIndex(w)][vertexIndex(v)] = false;
+                alfa--;
+            }
         }
     }
 
     @Override
     public boolean hasEdge(T v, T w) {
-        return A[(int) v][(int) w];
+        if(hasVertex(v) && hasVertex( w))
+        return A[vertexIndex(v)][vertexIndex( w)];
+        return false;
     }
 
     @Override
@@ -163,5 +168,13 @@ public class AdjacencyMatrixGraphImpl<T> implements Graph<T> {
             }
         }
         return matrix;
+    }
+
+    private int vertexIndex(T v){
+        for (int i = 0; i < V.length ; i++) {
+            if(V[i]==v)
+                return i;
+        }
+        throw new IllegalArgumentException("No such vertex on the array");
     }
 }
