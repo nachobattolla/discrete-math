@@ -37,10 +37,12 @@ public class EdgeArrayGraphImpl<T> implements Graph<T> {
 
     @Override
     public void addEdge(T v, T w) {
-        T[] edge = (T[]) new Object[2];
-        edge[0] = v;
-        edge[1]= w;
-        a.add(edge);
+        if(hasVertex(v) && hasVertex(w)) {
+            T[] edge = (T[]) new Object[2];
+            edge[0] = v;
+            edge[1] = w;
+            a.add(edge);
+        }
     }
 
     @Override
